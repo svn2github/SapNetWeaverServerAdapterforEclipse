@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.sap.netweaver.porta.ide.eclipse.feature"
+      label="%featureName"
+      version="0.7.0.qualifier"
+      provider-name="%providerName"
+      image="saplogo.gif">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <discovery label="%updateSiteName" url="http://master.dl.sourceforge.net/project/sapnweclipse/updates/"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.debug.core"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.jst.common.project.facet.core"/>
+      <import plugin="org.eclipse.jst.j2ee"/>
+      <import plugin="org.eclipse.jst.server.core"/>
+      <import plugin="org.eclipse.jst.server.ui"/>
+      <import plugin="org.eclipse.wst.common.frameworks"/>
+      <import plugin="org.eclipse.wst.common.project.facet.core"/>
+      <import plugin="org.eclipse.wst.common.project.facet.ui"/>
+      <import plugin="org.eclipse.wst.server.core"/>
+      <import plugin="org.eclipse.wst.server.ui"/>
+      <import plugin="javax.xml.rpc"/>
+      <import plugin="org.apache.axis"/>
+      <import plugin="org.eclipse.core.commands"/>
+      <import plugin="org.eclipse.core.net"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.core.jobs"/>
+      <import plugin="org.eclipse.debug.ui"/>
+      <import plugin="org.eclipse.jdt.debug.ui"/>
+      <import plugin="org.eclipse.jdt.launching"/>
+      <import plugin="org.eclipse.jface"/>
+      <import plugin="org.eclipse.jst.j2ee.web"/>
+      <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.ui.browser"/>
+      <import plugin="org.eclipse.ui.forms"/>
+      <import plugin="org.eclipse.ui.workbench"/>
+      <import plugin="org.eclipse.osgi"/>
+   </requires>
+
+   <plugin
+         id="com.sap.netweaver.porta.ide.eclipse.core"
+         download-size="21"
+         install-size="21"
+         version="0.7.0.qualifier"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.netweaver.porta.ide.eclipse.axis.proxy"
+         download-size="3"
+         install-size="3"
+         version="0.2.0.qualifier"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.netweaver.porta.ide.eclipse.core.nw7"
+         download-size="289"
+         install-size="289"
+         version="0.7.0.qualifier"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.httpclient"
+         download-size="314"
+         install-size="314"
+         version="3.1.0.v20080605-1935"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.codec"
+         download-size="54"
+         install-size="54"
+         version="1.3.0.v20080530-1600"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.netweaver.porta.ide.eclipse"
+         download-size="0"
+         install-size="0"
+         version="0.7.0.qualifier"
+         unpack="false"/>
+
+</feature>
