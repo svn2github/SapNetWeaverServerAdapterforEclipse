@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests for Porta Eclipse Connector
+Bundle-SymbolicName: com.sap.netweaver.porta.ide.eclipse.tests
+Bundle-Version: 0.2.0.qualifier
+Bundle-Vendor: SAP AG
+Fragment-Host: com.sap.netweaver.porta.ide.eclipse
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.junit4,
+ org.easymock
