@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Fragment for overriding the Axis proxy settings handler
+Bundle-SymbolicName: com.sap.netweaver.porta.ide.eclipse.axis.proxy
+Bundle-Version: 0.2.0.qualifier
+Fragment-Host: org.apache.axis
+Bundle-Vendor: SAP AG
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
