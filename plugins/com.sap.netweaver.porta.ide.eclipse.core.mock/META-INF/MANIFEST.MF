@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Fragment providing the Mock implementation for the Porta Core library
+Bundle-SymbolicName: com.sap.netweaver.porta.ide.eclipse.core.mock
+Bundle-Version: 0.7.0.qualifier
+Bundle-Vendor: SAP
+Bundle-ClassPath: .
+Fragment-Host: com.sap.netweaver.porta.ide.eclipse.core;bundle-version="[0.6.0,0.8.0)"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
