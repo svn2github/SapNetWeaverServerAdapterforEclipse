@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="com.sap.netweaver.porta.core">
+	
+	<property name="classes.home" value="../${ant.project.name}/bin"/>
+	
+    <target name="init">
+    </target>
+	
+    <target name="clean">
+    	<delete dir="com" />
+    </target>
+	
+    <target depends="init,clean" name="build">
+    	<copy todir=".">
+    		<fileset dir="../${ant.project.name}/bin" />
+    	</copy>
+    </target>
+	
+</project>
