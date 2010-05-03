@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+<extension point="org.eclipse.wst.server.core.runtimeTypes">
+  <runtimeType class="com.sap.netweaver.porta.ide.eclipse.server.runtime.SapNW710Runtime"
+   description="The runtime SAP NetWeaver CE 7.1 supports J2EE 1.4 and Java EE 5 modules. "
+    id="com.sap.netweaver.runtime.ce.710"
+     name="SAP NetWeaver CE 7.1" vendor="SAP"
+     vendorId="SAP" version="7.10">
+        <moduleType
+         types="jst.web"
+         versions="2.4,2.5"/>
+      <moduleType
+         types="jst.ejb"
+         versions="2.1,3.0"/>
+      <moduleType
+         types="jst.ear"
+         versions="1.4,5.0"/>
+      <moduleType
+         types="jst.appclient"
+         versions="1.4,5.0"/>
+      <moduleType
+         types="jst.connector"
+         versions="1.5"/>
+      <moduleType
+            types="jst.utility"
+            versions="1.0">
+      </moduleType>
+      
+   </runtimeType>
+  <runtimeType
+        class="com.sap.netweaver.porta.ide.eclipse.server.runtime.SapNW710Runtime"
+        description="The runtime SAP NetWeaver PI 7.1 supports J2EE 1.4 and Java EE 5 modules. "
+        id="com.sap.netweaver.runtime.pi.710"
+        name="SAP NetWeaver PI 7.1"
+        vendor="SAP"
+        vendorId="SAP"
+        version="7.10">
+     <moduleType
+           types="jst.web"
+           versions="2.4,2.5">
+     </moduleType>
+     <moduleType
+           types="jst.ejb"
+           versions="2.1,3.0">
+     </moduleType>
+     <moduleType
+           types="jst.ear"
+           versions="1.4,5.0">
+     </moduleType>
+     <moduleType
+           types="jst.appclient"
+           versions="1.4,5.0">
+     </moduleType>
+     <moduleType
+           types="jst.connector"
+           versions="1.5">
+     </moduleType>
+     <moduleType
+           types="jst.utility"
+           versions="1.0">
+     </moduleType>
+  </runtimeType>
+  <runtimeType
+        class="com.sap.netweaver.porta.ide.eclipse.server.runtime.SapNW711Runtime"
+        description="The runtime for EHP1 for SAP NetWeaver CE 7.1 supports J2EE 1.4 and Java EE 5 modules. "
+        id="com.sap.netweaver.runtime.ce.711"
+        name="EHP1 for SAP NetWeaver CE 7.1"
+        vendor="SAP"
+        vendorId="SAP"
+        version="7.11">
+     <moduleType
+           types="jst.web"
+           versions="2.4,2.5">
+     </moduleType>
+     <moduleType
+           types="jst.ejb"
+           versions="2.1,3.0">
+     </moduleType>
+     <moduleType
+           types="jst.ear"
+           versions="1.4,5.0">
+     </moduleType>
+     <moduleType
+           types="jst.appclient"
+           versions="1.4,5.0">
+     </moduleType>
+     <moduleType
+           types="jst.connector"
+           versions="1.5">
+     </moduleType>
+     <moduleType
+           types="jst.utility"
+           versions="1.0">
+     </moduleType>
+  </runtimeType>
+  <runtimeType
+        class="com.sap.netweaver.porta.ide.eclipse.server.runtime.SapNW711Runtime"
+        description="The runtime for EHP1 for SAP NetWeaver PI 7.1 supports J2EE 1.4 and Java EE 5 modules. "
+        id="com.sap.netweaver.runtime.pi.711"
+        name="EHP1 for SAP NetWeaver PI 7.1"
+        vendor="SAP"
+        vendorId="SAP"
+        version="7.11">
+     <moduleType
+           types="jst.web"
+           versions="2.4,2.5">
+     </moduleType>
+     <moduleType
+           types="jst.ejb"
+           versions="2.1,3.0">
+     </moduleType>
+     <moduleType
+           types="jst.ear"
+           versions="1.4,5.0">
+     </moduleType>
+     <moduleType
+           types="jst.appclient"
+           versions="1.4,5.0">
+     </moduleType>
+     <moduleType
+           types="jst.connector"
+           versions="1.5">
+     </moduleType>
+     <moduleType
+           types="jst.utility"
+           versions="1.0">
+     </moduleType>
+  </runtimeType>
+  <runtimeType
+        class="com.sap.netweaver.porta.ide.eclipse.server.runtime.SapNW720Runtime"
+        description="The runtime for SAP NetWeaver CE 7.2 supports J2EE 1.4 and Java EE 5 modules. "
+        id="com.sap.netweaver.runtime.ce.720"
+        name="SAP NetWeaver CE 7.2"
+        vendor="SAP"
+        vendorId="SAP"
+        version="7.20">
+     <moduleType
+           types="jst.web"
+           versions="2.4,2.5">
+     </moduleType>
+     <moduleType
+           types="jst.ejb"
+           versions="2.1,3.0">
+     </moduleType>
+     <moduleType
+           types="jst.ear"
+           versions="1.4,5.0">
+     </moduleType>
+     <moduleType
+           types="jst.appclient"
+           versions="1.4,5.0">
+     </moduleType>
+     <moduleType
+           types="jst.connector"
+           versions="1.5">
+     </moduleType>
+     <moduleType
+           types="jst.utility"
+           versions="1.0">
+     </moduleType>
+  </runtimeType>
+ </extension>
+<extension point="org.eclipse.wst.server.core.serverTypes">
+      <serverType
+            behaviourClass="com.sap.netweaver.porta.ide.eclipse.server.control.SapNWServerBehavior"
+            class="com.sap.netweaver.porta.ide.eclipse.server.SapNWServer"
+            description="Publishes and runs J2EE 1.4 and Java EE 5 modules on a local or remote instance of SAP NetWeaver CE 7.1. "
+            hasConfiguration="false"
+            id="com.sap.netweaver.server.ce.710"
+            launchConfigId="com.sap.netweaver.server.launchConfigurationType"
+            launchModes="run,debug"
+            name="SAP NetWeaver CE 7.1"
+            runtime="true"
+            runtimeTypeId="com.sap.netweaver.runtime.ce.710"
+            startBeforePublish="true"
+            startTimeout="900000"
+            stopTimeout="300000"
+            supportsRemoteHosts="true">
+     </serverType>
+      <serverType
+            behaviourClass="com.sap.netweaver.porta.ide.eclipse.server.control.SapNWServerBehavior"
+            class="com.sap.netweaver.porta.ide.eclipse.server.SapNWServer"
+            description="Publishes and runs J2EE 1.4 and Java EE 5 modules on a local or remote instance of SAP NetWeaver PI 7.1. "
+            hasConfiguration="false"
+            id="com.sap.netweaver.server.pi.710"
+            launchConfigId="com.sap.netweaver.server.launchConfigurationType"
+            launchModes="run,debug"
+            name="SAP NetWeaver PI 7.1"
+            runtime="true"
+            runtimeTypeId="com.sap.netweaver.runtime.pi.710"
+            startBeforePublish="true"
+            startTimeout="900000"
+            stopTimeout="300000"
+            supportsRemoteHosts="true">
+      </serverType>
+      <serverType
+            behaviourClass="com.sap.netweaver.porta.ide.eclipse.server.control.SapNWServerBehavior"
+            class="com.sap.netweaver.porta.ide.eclipse.server.SapNWServer"
+            description="Publishes and runs J2EE 1.4 and Java EE 5 modules on a local or remote instance of EHP1 for SAP NetWeaver CE 7.1. "
+            hasConfiguration="false"
+            id="com.sap.netweaver.server.ce.711"
+            launchConfigId="com.sap.netweaver.server.launchConfigurationType"
+            launchModes="run,debug"
+            name="EHP1 for SAP NetWeaver CE 7.1"
+            runtime="true"
+            runtimeTypeId="com.sap.netweaver.runtime.ce.711"
+            startBeforePublish="true"
+            startTimeout="900000"
+            stopTimeout="300000"
+            supportsRemoteHosts="true">
+      </serverType>
+      <serverType
+            behaviourClass="com.sap.netweaver.porta.ide.eclipse.server.control.SapNWServerBehavior"
+            class="com.sap.netweaver.porta.ide.eclipse.server.SapNWServer"
+            description="Publishes and runs J2EE 1.4 and Java EE 5 modules on a local or remote instance of EHP1 for SAP NetWeaver PI 7.1. "
+            hasConfiguration="false"
+            id="com.sap.netweaver.server.pi.711"
+            launchConfigId="com.sap.netweaver.server.launchConfigurationType"
+            launchModes="run,debug"
+            name="EHP1 for SAP NetWeaver PI 7.1"
+            runtime="true"
+            runtimeTypeId="com.sap.netweaver.runtime.pi.711"
+            startBeforePublish="true"
+            startTimeout="900000"
+            stopTimeout="300000"
+            supportsRemoteHosts="true">
+      </serverType>
+      <serverType
+            behaviourClass="com.sap.netweaver.porta.ide.eclipse.server.control.SapNWServerBehavior"
+            class="com.sap.netweaver.porta.ide.eclipse.server.SapNWServer"
+            description="Publishes and runs J2EE 1.4 and Java EE 5 modules on a local or remote instance of SAP NetWeaver CE 7.2. "
+            hasConfiguration="false"
+            id="com.sap.netweaver.server.ce.720"
+            launchConfigId="com.sap.netweaver.server.launchConfigurationType"
+            launchModes="run,debug"
+            name="SAP NetWeaver CE 7.2"
+            runtime="true"
+            runtimeTypeId="com.sap.netweaver.runtime.ce.720"
+            startBeforePublish="true"
+            startTimeout="900000"
+            stopTimeout="300000"
+            supportsRemoteHosts="true">
+      </serverType>
+    </extension>
+    
+    <extension point="org.eclipse.jst.server.core.runtimeClasspathProviders">
+     <runtimeClasspathProvider
+        id="com.sap.netweaver.runtimeTarget"
+        runtimeTypeIds="com.sap.netweaver.runtime.*"
+        class="com.sap.netweaver.porta.ide.eclipse.server.runtime.SapNWRuntimeClasspathProvider"/>
+        
+	</extension>
+  
+  <extension point="org.eclipse.wst.server.core.publishTasks">
+     <publishTask
+        id="com.sap.netweaver.publishTask"
+        typeIds="com.sap.netweaver.server.*"
+        class="com.sap.netweaver.porta.ide.eclipse.server.control.SapNWPublishTask"/>
+  </extension>
+ 
+ 
+ 
+ 
+ <extension point="org.eclipse.wst.common.project.facet.core.runtimes">
+    <runtime-component-type
+          id="com.sap.netweaver.runtime">
+    </runtime-component-type>
+    <runtime-component-version
+          type="com.sap.netweaver.runtime"
+          version="7.10">
+    </runtime-component-version>
+    <runtime-component-version
+          type="com.sap.netweaver.runtime"
+          version="7.11">
+    </runtime-component-version>
+    <runtime-component-version
+       type="com.sap.netweaver.runtime"
+       version="7.20"/>
+
+	<adapter>
+      <runtime-component
+         id="com.sap.netweaver.runtime"/>
+      <factory
+         class="org.eclipse.jst.server.core.internal.RuntimeClasspathProvider$Factory"/>
+      <type
+         class="org.eclipse.jst.common.project.facet.core.IClasspathProvider"/>
+    </adapter>
+    <adapter>
+       <runtime-component
+             id="com.sap.netweaver.runtime">
+       </runtime-component>
+       <factory
+             class="org.eclipse.jst.server.ui.internal.RuntimeLabelProvider$Factory">
+       </factory>
+       <type
+             class="org.eclipse.wst.common.project.facet.ui.IRuntimeComponentLabelProvider">
+       </type>
+    </adapter>
+
+    <supported>
+      <facet
+         id="jst.web"
+         version="[2.4-2.5]"/>
+      <facet
+         id="jst.ejb"
+         version="[2.1-3.0]"/>
+      <facet
+         id="jst.ear"
+         version="[1.4-5.0]"/>
+      <facet
+         id="jst.appclient"
+         version="[1.4-5.0]"/>
+      <facet
+         id="jst.connector"
+         version="1.5"/>
+      <facet
+         id="jst.utility"
+         version="1.0"/>
+      <facet
+         id="jst.java"
+         version="[1.3-5.0]"/>
+      <runtime-component
+         id="com.sap.netweaver.runtime"
+         version="[7.10"/>
+    </supported>
+    <supported>
+       <facet
+             id="jst.java"
+             version="6.0">
+       </facet>
+       <runtime-component
+             id="com.sap.netweaver.runtime"
+             version="[7.20">
+       </runtime-component>
+    </supported>
+
+  
+ </extension>
+  
+  <extension point="org.eclipse.jst.server.core.runtimeFacetMappings">
+    <runtimeFacetMapping
+      runtimeTypeId="com.sap.netweaver.runtime.ce.710"
+      runtime-component="com.sap.netweaver.runtime"
+      version="7.10"/>
+    <runtimeFacetMapping
+          runtime-component="com.sap.netweaver.runtime"
+          runtimeTypeId="com.sap.netweaver.runtime.pi.710"
+          version="7.10">
+    </runtimeFacetMapping>
+    <runtimeFacetMapping
+          runtime-component="com.sap.netweaver.runtime"
+          runtimeTypeId="com.sap.netweaver.runtime.ce.711"
+          version="7.11">
+    </runtimeFacetMapping>
+    <runtimeFacetMapping
+          runtime-component="com.sap.netweaver.runtime"
+          runtimeTypeId="com.sap.netweaver.runtime.pi.711"
+          version="7.11">
+    </runtimeFacetMapping>
+    <runtimeFacetMapping
+          runtime-component="com.sap.netweaver.runtime"
+          runtimeTypeId="com.sap.netweaver.runtime.ce.720"
+          version="7.20">
+    </runtimeFacetMapping>
+
+  </extension>
+  
+  <extension point="org.eclipse.wst.server.ui.serverImages">
+    <image id="com.sap.netweaver.image"
+       icon="icons/obj16/saplogo.gif"
+      typeIds="com.sap.netweaver.runtime.ce.710,com.sap.netweaver.server.ce.710,com.sap.netweaver.runtime.pi.710,com.sap.netweaver.server.pi.710,com.sap.netweaver.runtime.ce.711,com.sap.netweaver.server.ce.711,com.sap.netweaver.runtime.pi.711,com.sap.netweaver.server.pi.711,com.sap.netweaver.runtime.ce.720,com.sap.netweaver.server.ce.720"/>
+      </extension>
+      
+     <extension
+       point="org.eclipse.wst.server.ui.wizardFragments">
+        <fragment
+              class="com.sap.netweaver.porta.ide.eclipse.server.ui.wizard.SapNWRuntimeWizardFragment"
+              id="com.sap.netweaver.runtime"
+              typeIds="com.sap.netweaver.runtime.pi.710,com.sap.netweaver.runtime.ce.710,com.sap.netweaver.runtime.ce.711,com.sap.netweaver.runtime.pi.711,com.sap.netweaver.runtime.ce.720">
+        </fragment>
+
+     <fragment
+        id="com.sap.netweaver.server"
+        typeIds="com.sap.netweaver.server.pi.710,com.sap.netweaver.server.ce.710,com.sap.netweaver.server.ce.711,com.sap.netweaver.server.pi.711,com.sap.netweaver.server.ce.720"
+        class="com.sap.netweaver.porta.ide.eclipse.server.ui.wizard.SapNWServerWizardFragment"/>
+           
+   </extension>
+   
+   
+   
+     
+      <extension point="org.eclipse.debug.core.launchConfigurationTypes">
+
+      <launchConfigurationType
+            delegate="com.sap.netweaver.porta.ide.eclipse.server.control.SapNWLaunchConfigurationDelegate"
+            id="com.sap.netweaver.server.launchConfigurationType"
+            modes="run,debug"
+            name="SAP NetWeaver Application Server"
+            public="true">            
+      </launchConfigurationType>
+      <launchConfigurationType
+            delegate="org.eclipse.jdt.internal.launching.JavaRemoteApplicationLaunchConfigurationDelegate"
+            id="com.sap.netweaver.server.remote.debugging.launchConfigurationType"
+            modes="debug"
+            name="SAP NetWeaver Remote Debugging"
+            public="true"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            sourcePathComputerId="com.sap.netweaver.server.sourcePathComputer">
+      </launchConfigurationType>
+
+   </extension>
+      <extension
+            point="org.eclipse.wst.common.project.facet.ui.images">
+         <image
+               path="icons/obj16/saplogo.gif"
+               runtime-component-type="com.sap.netweaver.runtime">
+         </image>
+      </extension>
+      <extension
+            point="org.eclipse.wst.server.ui.editorPageSections">
+         <section
+               class="com.sap.netweaver.porta.ide.eclipse.server.ui.editor.SapNWInstanceEditorSection"
+               id="com.sap.netweaver.porta.ide.eclipse.instance"
+               insertionId="org.eclipse.wst.server.editor.overview.left"
+               order="0"
+               typeIds="com.sap.netweaver.server.*">
+         </section>
+      </extension>
+      <extension
+            point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+         <launchConfigurationTypeImage
+               configTypeID="com.sap.netweaver.server.launchConfigurationType"
+               icon="icons/obj16/saplogo.gif"
+               id="com.sap.netweaver.server.launchConfigurationTypeImage">
+         </launchConfigurationTypeImage>
+         <launchConfigurationTypeImage
+               configTypeID="com.sap.netweaver.server.remote.debugging.launchConfigurationType"
+               icon="icons/obj16/sapdebug.gif"
+               id="com.sap.netweaver.server.remote.debugging.launchConfigurationTypeImage">
+         </launchConfigurationTypeImage>
+      </extension>
+      <extension
+            point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+         <launchConfigurationTabGroup
+               class="com.sap.netweaver.porta.ide.eclipse.server.control.SapNWLaunchConfigurationTabGroup"
+               id="com.sap.netweaver.server.launchConfigurationTabGroup"
+               type="com.sap.netweaver.server.launchConfigurationType">
+         </launchConfigurationTabGroup>
+         <launchConfigurationTabGroup
+               class="org.eclipse.jdt.internal.debug.ui.launcher.RemoteJavaApplicationTabGroup"
+               id="com.sap.netweaver.server.remote.debugging.launchConfigurationTabGroup"
+               type="com.sap.netweaver.server.remote.debugging.launchConfigurationType">
+         </launchConfigurationTabGroup>
+      </extension>
+      <extension
+            point="org.eclipse.wst.server.core.launchableAdapters">
+         <launchableAdapter
+               class="com.sap.netweaver.porta.ide.eclipse.server.control.SapNWLaunchableAdapterDelegate"
+               id="com.sap.netweaver.server.web">
+         </launchableAdapter>
+      </extension>
+      <extension
+            point="org.eclipse.debug.core.sourcePathComputers">
+         <sourcePathComputer
+               class="com.sap.netweaver.porta.ide.eclipse.server.control.SapNWSourcePathComputerDelegate"
+               id="com.sap.netweaver.server.sourcePathComputer">
+         </sourcePathComputer>
+      </extension>
+  
+</plugin>
