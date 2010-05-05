@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.4.1.200907211842.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.4.1.200907211842">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.4.2.200908121739.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.4.2.200908121739">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.5.0.200909151631.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.5.0.200909151631">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.5.1.200910061011.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.5.1.200910061011">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.5.2.200911041554.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.5.2.200911041554">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.6.0.200912021058.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.6.0.200912021058">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.6.1.201004082044.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.6.1.201004082044">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.6.2.201004151946.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.6.2.201004151946">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.6.3.201004231243.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.6.3.201004231243">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.7.0.201005031829.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.7.0.201005031829">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <archive path="plugins/org.apache.commons.httpclient_3.1.0.v20080605-1935.jar" url="http://download.eclipse.org/tools/orbit/downloads/drops/R20100114021427/bundles/org.apache.commons.httpclient_3.1.0.v20080605-1935.jar"/>
+   <archive path="plugins/org.apache.commons.codec_1.3.0.v20080530-1600.jar" url="http://download.eclipse.org/tools/orbit/downloads/drops/R20100114021427/bundles/org.apache.commons.codec_1.3.0.v20080530-1600.jar"/>
+   <category-def name="org.eclipse.wst.server.core.serverAdapter" label="SAP NetWeaver Server Adapter"/>
+</site>
