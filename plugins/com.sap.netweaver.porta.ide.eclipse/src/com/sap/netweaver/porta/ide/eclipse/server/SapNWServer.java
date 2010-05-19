@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.jst.j2ee.project.facet.IJ2EEFacetConstants;
 import org.eclipse.jst.server.core.IEnterpriseApplication;
 import org.eclipse.jst.server.core.IWebModule;
 import org.eclipse.wst.server.core.IModule;
@@ -33,6 +32,7 @@ import com.sap.netweaver.porta.core.Server;
 import com.sap.netweaver.porta.core.ServerFactory;
 import com.sap.netweaver.porta.ide.eclipse.SapNWPlugin;
 import com.sap.netweaver.porta.ide.eclipse.server.control.AuthCallback;
+import com.sap.netweaver.porta.ide.eclipse.util.FacetUtil;
 import com.sap.netweaver.porta.ide.eclipse.util.SapNWServerUtil;
 
 public class SapNWServer extends ServerDelegate implements IURLProvider {
@@ -80,10 +80,10 @@ public class SapNWServer extends ServerDelegate implements IURLProvider {
 				// retrieve the context root
 				contextRoot = "/";
 				String type = module.getModuleType().getId();
-				if (IJ2EEFacetConstants.STATIC_WEB.equals(type)) {
+				if (FacetUtil.STATIC_WEB.equals(type)) {
 					IStaticWeb staticWeb = (IStaticWeb) module.loadAdapter(IStaticWeb.class, null);
 					contextRoot += staticWeb.getContextRoot();
-				} else if (IJ2EEFacetConstants.DYNAMIC_WEB.equals(type)) {
+				} else if (FacetUtil.DYNAMIC_WEB.equals(type)) {
 					IWebModule webModule = (IWebModule) module.loadAdapter(IWebModule.class, null);
 					contextRoot += webModule.getContextRoot();
 				}
@@ -104,7 +104,7 @@ public class SapNWServer extends ServerDelegate implements IURLProvider {
 		if (module[0] != null && module.length == 1) {
 			IModuleType moduleType = module[0].getModuleType();
 			if (moduleType != null 
-					&& IJ2EEFacetConstants.ENTERPRISE_APPLICATION.equals(moduleType.getId())) {
+					&& FacetUtil.ENTERPRISE_APPLICATION.equals(moduleType.getId())) {
 				IEnterpriseApplication enterpriseApplication = (IEnterpriseApplication) module[0]
 						.loadAdapter(IEnterpriseApplication.class, null);
 				if (enterpriseApplication != null) {
@@ -114,7 +114,7 @@ public class SapNWServer extends ServerDelegate implements IURLProvider {
 					}
 				}
 			} else if (moduleType != null
-					&& IJ2EEFacetConstants.DYNAMIC_WEB.equals(moduleType.getId())) {
+					&& FacetUtil.DYNAMIC_WEB.equals(moduleType.getId())) {
 				IWebModule webModule = (IWebModule) module[0].loadAdapter(IWebModule.class, null);
 				if (webModule != null) {
 					return webModule.getModules();
@@ -126,7 +126,7 @@ public class SapNWServer extends ServerDelegate implements IURLProvider {
 
 	@Override
 	public IModule[] getRootModules(IModule module) throws CoreException {
-		IModule[] ears = ServerUtil.getModules(IJ2EEFacetConstants.ENTERPRISE_APPLICATION);
+		IModule[] ears = ServerUtil.getModules(FacetUtil.ENTERPRISE_APPLICATION);
 		return getRootModules(module, ears);
 	}
 
@@ -227,8 +227,13 @@ public class SapNWServer extends ServerDelegate implements IURLProvider {
 		}
 	}
 	
-	private String getLMDefaultUser(Server serverCore) throws com.sap.netweaver.porta.core.CoreException {
-		return serverCore.getSystemName().toLowerCase() + "adm";
+	private String getLMDefaultUser(Server serverCore) {
+		try {
+			return serverCore.getSystemName().toLowerCase() + "adm";
+		} catch (com.sap.netweaver.porta.core.CoreException e) {
+			SapNWPlugin.logWarning("Cannot retrieve system name. Will not suggest default user name. ", e);
+			return "";
+		}
 	}
 	
 	private String getDMDefaultUser(Server serverCore) {

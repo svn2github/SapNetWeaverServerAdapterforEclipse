@@ -77,7 +77,7 @@ public class SapNWRuntimeWizardFragment extends WizardFragment {
 			// create the cache directory
 			File cacheDirectory = new File(sapRuntime.getCacheLocation().toOSString());
 			if (!cacheDirectory.exists() && !cacheDirectory.mkdirs()) {
-				throw new CoreException(new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, "Could not create cache directory"));
+				throw new CoreException(new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, IStatus.OK, "Could not create cache directory", null));
 			}
 			
 			// copy the jar files
@@ -106,7 +106,7 @@ public class SapNWRuntimeWizardFragment extends WizardFragment {
 			try {
 				copyFile(srcJar, destJar);
 			} catch (IOException e) {
-				throw new CoreException(new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, "Could not copy jar file " + srcJar.getAbsolutePath()));
+				throw new CoreException(new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, IStatus.OK, "Could not copy jar file " + srcJar.getAbsolutePath(), null));
 			}
 			
 			if (monitor != null) {

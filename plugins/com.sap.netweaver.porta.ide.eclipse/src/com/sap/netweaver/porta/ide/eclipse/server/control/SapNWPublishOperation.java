@@ -79,7 +79,7 @@ public class SapNWPublishOperation extends PublishOperation {
 			}.schedule();
 			// throw CoreException to fail the publish operation
 			MultiStatus multi = new MultiStatus(SapNWPlugin.PLUGIN_ID, 0, e.getLocalizedMessage(), e.getCause());
-			multi.add(new Status(IStatus.WARNING, SapNWPlugin.PLUGIN_ID, "Endpoint: " + e.getEndpoint()));
+			multi.add(new Status(IStatus.WARNING, SapNWPlugin.PLUGIN_ID, IStatus.OK, "Endpoint: " + e.getEndpoint(), null));
 			throw new CoreException(multi);
 		} catch (final PublishException e) {
 			new UIJob("Show Error in UI") {
@@ -90,12 +90,12 @@ public class SapNWPublishOperation extends PublishOperation {
 			}.schedule();
 			// throw CoreException to fail the publish operation
 			MultiStatus multi = new MultiStatus(SapNWPlugin.PLUGIN_ID, 0, e.getLocalizedMessage(), e.getCause());
-			multi.add(new Status(IStatus.WARNING, SapNWPlugin.PLUGIN_ID, e.getDeployResult().getStatusDetails()));
+			multi.add(new Status(IStatus.WARNING, SapNWPlugin.PLUGIN_ID, IStatus.OK, e.getDeployResult().getStatusDetails(), null));
 			throw new CoreException(multi);
 		} catch (CoreException e) {
 			throw e;
 		} catch (Exception e) {
-			throw new CoreException(new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, e.getLocalizedMessage(), e));
+			throw new CoreException(new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, IStatus.OK, e.getLocalizedMessage(), e));
 		}
 	}
 
@@ -156,7 +156,7 @@ public class SapNWPublishOperation extends PublishOperation {
 			operation.execute(monitor, null);
 			return operation.getArchiveFile();
 		} catch (Exception e) {
-			throw new CoreException(new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, "Module assembly failed", e));
+			throw new CoreException(new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, IStatus.OK, "Module assembly failed", e));
 		}
 	}
 	

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Porta Core library bundle
 Bundle-SymbolicName: com.sap.netweaver.porta.ide.eclipse.core
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.7.0.201005031829
 Bundle-Vendor: SAP AG
 Bundle-ClassPath: .
 Export-Package: com.sap.netweaver.porta.core

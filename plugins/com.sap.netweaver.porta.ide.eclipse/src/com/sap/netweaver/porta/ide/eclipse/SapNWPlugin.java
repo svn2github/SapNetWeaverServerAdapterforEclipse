@@ -13,14 +13,12 @@ package com.sap.netweaver.porta.ide.eclipse;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import org.eclipse.core.net.proxy.IProxyService;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.osgi.framework.BundleContext;
-import org.osgi.util.tracker.ServiceTracker;
 
 import com.sap.netweaver.porta.ide.eclipse.server.SapNWRefreshStateJob;
 
@@ -32,8 +30,6 @@ public class SapNWPlugin extends Plugin {
 
 	private static SapNWPlugin singleton = null;
 	
-	private ServiceTracker tracker;
-	
 	public SapNWPlugin() {
 		super();
 		singleton = this;
@@ -42,25 +38,18 @@ public class SapNWPlugin extends Plugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		tracker = new ServiceTracker(getBundle().getBundleContext(), IProxyService.class.getName(), null);
-		tracker.open();
 	}
 
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		singleton = null;
 		super.stop(context);
-		tracker.close();
 	}
 
 	public static SapNWPlugin getDefault() {
 		return singleton;
 	}
 	
-	public IProxyService getProxyService() {
-		return (IProxyService) tracker.getService();
-	}
-
 	public static void errorDialog(final String title, final String message) {
 		final Display display = Display.getDefault();
     	display.syncExec(new Runnable() {
@@ -85,15 +74,15 @@ public class SapNWPlugin extends Plugin {
 	}
 	
 	public static void logError(String msg, Throwable t) {
-		log(new Status(IStatus.ERROR, PLUGIN_ID, msg, t));
+		log(new Status(IStatus.ERROR, PLUGIN_ID, IStatus.OK, msg, t));
 	}
 	
 	public static void logWarning(String msg, Throwable t) {
-		log(new Status(IStatus.WARNING, PLUGIN_ID, msg, t));
+		log(new Status(IStatus.WARNING, PLUGIN_ID, IStatus.OK, msg, t));
 	}
 	
 	public static void logInfo(String msg, Throwable t) {
-		log(new Status(IStatus.INFO, PLUGIN_ID, msg, t));
+		log(new Status(IStatus.INFO, PLUGIN_ID, IStatus.OK, msg, t));
 	}
 	
 	private static void log(IStatus status) {

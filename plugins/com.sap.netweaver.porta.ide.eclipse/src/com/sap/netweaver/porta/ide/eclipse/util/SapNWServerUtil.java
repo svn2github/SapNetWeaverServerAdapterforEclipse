@@ -10,17 +10,16 @@
  *******************************************************************************/
 package com.sap.netweaver.porta.ide.eclipse.util;
 
-import org.eclipse.jst.j2ee.project.facet.IJ2EEFacetConstants;
 import org.eclipse.wst.server.core.IModule;
 
 public class SapNWServerUtil {
 
 	public static boolean isWAR(IModule module) {
-		return (module == null) ? false : IJ2EEFacetConstants.DYNAMIC_WEB.equals(module.getModuleType().getId());
+		return (module == null) ? false : FacetUtil.DYNAMIC_WEB.equals(module.getModuleType().getId());
 	}
 
 	public static boolean isEAR(IModule module) {
-		return (module == null) ? false : IJ2EEFacetConstants.ENTERPRISE_APPLICATION.equals(module.getModuleType().getId());
+		return (module == null) ? false : FacetUtil.ENTERPRISE_APPLICATION.equals(module.getModuleType().getId());
 	}
 	
 	public static boolean isDeployableModule(IModule module) {

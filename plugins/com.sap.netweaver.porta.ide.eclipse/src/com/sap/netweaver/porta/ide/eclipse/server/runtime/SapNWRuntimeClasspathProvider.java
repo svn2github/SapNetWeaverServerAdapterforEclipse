@@ -10,7 +10,7 @@
  *******************************************************************************/
 package com.sap.netweaver.porta.ide.eclipse.server.runtime;
 
-import static org.eclipse.wst.common.componentcore.internal.util.IModuleConstants.*;
+import static com.sap.netweaver.porta.ide.eclipse.util.FacetUtil.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,6 @@ import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jst.server.core.RuntimeClasspathProviderDelegate;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
-import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.common.project.facet.core.ProjectFacetsManager;
 import org.eclipse.wst.server.core.IRuntime;
 
@@ -69,31 +68,21 @@ public class SapNWRuntimeClasspathProvider extends RuntimeClasspathProviderDeleg
 	}
 
 	private String[] getJarPaths(IFacetedProject project, SapNWRuntime sapRuntime) {
-		if (project.hasProjectFacet(getProjectFacet(JST_WEB_MODULE, "2.5"))
-				|| project.hasProjectFacet(getProjectFacet(JST_EJB_MODULE, "3.0"))
-				|| project.hasProjectFacet(getProjectFacet(JST_EAR_MODULE, "5.0"))
-				|| project.hasProjectFacet(getProjectFacet(JST_APPCLIENT_MODULE, "5.0"))
-				|| project.hasProjectFacet(getProjectFacet(JST_UTILITY_MODULE, "1.0"))) {
+		if (hasProjectFacet(project, DYNAMIC_WEB, "2.5")
+				|| hasProjectFacet(project, EJB, "3.0")
+				|| hasProjectFacet(project, ENTERPRISE_APPLICATION, "5.0")
+				|| hasProjectFacet(project, APPLICATION_CLIENT, "5.0")
+				|| hasProjectFacet(project, UTILITY, "1.0")) {
 			return sapRuntime.getJavaEE5Classpath();
-		} else if (project.hasProjectFacet(getProjectFacet(JST_WEB_MODULE, "2.4"))
-				|| project.hasProjectFacet(getProjectFacet(JST_EJB_MODULE, "2.1"))
-				|| project.hasProjectFacet(getProjectFacet(JST_EAR_MODULE, "1.4"))
-				|| project.hasProjectFacet(getProjectFacet(JST_APPCLIENT_MODULE, "1.4"))
-				|| project.hasProjectFacet(getProjectFacet(JST_CONNECTOR_MODULE, "1.5"))) {
+		} else if (hasProjectFacet(project, DYNAMIC_WEB, "2.4")
+				|| hasProjectFacet(project, EJB, "2.1")
+				|| hasProjectFacet(project, ENTERPRISE_APPLICATION, "1.4")
+				|| hasProjectFacet(project, APPLICATION_CLIENT, "1.4")
+				|| hasProjectFacet(project, JCA, "1.5")) {
 			return sapRuntime.getJ2EE14Classpath();
 		}
 		
 		return null;
 	}
 
-	/*
-	 * Use the below helper method to get the project facets instead of using
-	 * the IJ2EEFacetConstants.
-	 * 
-	 * This is for compatibility with Europa.
-	 */
-	private IProjectFacetVersion getProjectFacet(String facetName, String version) {
-		return ProjectFacetsManager.getProjectFacet(facetName).getVersion(version);
-	}
-	
 }

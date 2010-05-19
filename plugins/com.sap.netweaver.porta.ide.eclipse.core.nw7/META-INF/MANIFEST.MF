@@ -2,11 +2,11 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Fragment providing the NW 7.x implementation for the Porta Core library
 Bundle-SymbolicName: com.sap.netweaver.porta.ide.eclipse.core.nw7
-Bundle-Version: 0.7.0.qualifier
-Bundle-Vendor: SAP
+Bundle-Version: 0.7.1.qualifier
+Bundle-Vendor: SAP AG
 Bundle-ClassPath: .
-Fragment-Host: com.sap.netweaver.porta.ide.eclipse.core;bundle-version="[0.6.0,0.8.0)"
+Fragment-Host: com.sap.netweaver.porta.ide.eclipse.core;bundle-version="[0.6.0,1.0.0)"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: javax.xml.rpc,
+Require-Bundle: javax.xml.rpc;resolution:=optional,
  org.apache.axis,
  org.apache.commons.httpclient

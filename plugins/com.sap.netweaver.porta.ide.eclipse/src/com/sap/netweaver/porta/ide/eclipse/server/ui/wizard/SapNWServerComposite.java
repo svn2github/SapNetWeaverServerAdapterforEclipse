@@ -206,14 +206,14 @@ public class SapNWServerComposite extends Composite {
 	
 	IStatus validatePingStatus(boolean value) {
 		if (!value) {
-			return new Status(IStatus.WARNING, SapNWPlugin.PLUGIN_ID, "The server has not been pinged successfully yet. Use the Ping Server button. ");
+			return new Status(IStatus.WARNING, SapNWPlugin.PLUGIN_ID, IStatus.OK, "The server has not been pinged successfully yet. Use the Ping Server button. ", null);
 		}
 		return Status.OK_STATUS;
 	}
 	
 	IStatus validateHost(String value) {
 		if (value.trim().length() == 0) {
-			return new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, "Host name must not be empty. ");
+			return new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, IStatus.OK, "Host name must not be empty. ", null);
 		}
 		return Status.OK_STATUS;
 	}
@@ -231,7 +231,7 @@ public class SapNWServerComposite extends Composite {
 		
 		if (!valid) {
 			String message = "Instance number must be an integer in the range [0-99]. ";
-			return new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, message);
+			return new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, IStatus.OK, message, null);
 		}
 		return Status.OK_STATUS;
 	}

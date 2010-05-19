@@ -30,7 +30,15 @@
    <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.7.0.201005031829.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.7.0.201005031829">
       <category name="org.eclipse.wst.server.core.serverAdapter"/>
    </feature>
-   <archive path="plugins/org.apache.commons.httpclient_3.1.0.v20080605-1935.jar" url="http://download.eclipse.org/tools/orbit/downloads/drops/R20100114021427/bundles/org.apache.commons.httpclient_3.1.0.v20080605-1935.jar"/>
-   <archive path="plugins/org.apache.commons.codec_1.3.0.v20080530-1600.jar" url="http://download.eclipse.org/tools/orbit/downloads/drops/R20100114021427/bundles/org.apache.commons.codec_1.3.0.v20080530-1600.jar"/>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.compatibility.feature_0.1.0.201005181302.jar" id="com.sap.netweaver.porta.ide.eclipse.compatibility.feature" version="0.1.0.201005181302">
+      <category name="com.sap.netweaver.porta.ide.eclipse.compatibility"/>
+   </feature>
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.7.1.201005181302.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.7.1.201005181302">
+      <category name="org.eclipse.wst.server.core.serverAdapter"/>
+   </feature>
+   <archive path="plugins/org.apache.commons.httpclient_3.0.1.v200706111724.jar" url="http://archive.eclipse.org/tools/orbit/downloads/drops/R200709171314/bundles/org.apache.commons.httpclient_3.0.1.v200706111724.jar"/>
+   <archive path="plugins/org.apache.commons.codec_1.2.0.v200706111724.jar" url="http://archive.eclipse.org/tools/orbit/downloads/drops/R200709171314/bundles/org.apache.commons.codec_1.2.0.v200706111724.jar"/>
+   <archive path="plugins/org.apache.commons.logging_1.0.4.v200706111724.jar" url="http://archive.eclipse.org/tools/orbit/downloads/drops/R200709171314/bundles/org.apache.commons.logging_1.0.4.v200706111724.jar"/>
    <category-def name="org.eclipse.wst.server.core.serverAdapter" label="SAP NetWeaver Server Adapter"/>
+   <category-def name="com.sap.netweaver.porta.ide.eclipse.compatibility" label="SAP NetWeaver Server Adapter Compatibility Libraries"/>
 </site>

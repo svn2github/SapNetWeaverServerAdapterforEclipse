@@ -2,62 +2,30 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Porta Eclipse Connector
 Bundle-SymbolicName: com.sap.netweaver.porta.ide.eclipse;singleton:=true
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: SAP AG
 Bundle-Activator: com.sap.netweaver.porta.ide.eclipse.SapNWPlugin
-Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Import-Package: com.sap.netweaver.porta.core,
- org.eclipse.core.commands,
- org.eclipse.core.net.proxy,
- org.eclipse.core.resources,
+Import-Package: com.sap.netweaver.porta.core
+Require-Bundle: org.eclipse.core.resources,
  org.eclipse.core.runtime,
- org.eclipse.core.runtime.jobs,
  org.eclipse.debug.core,
- org.eclipse.debug.core.model,
- org.eclipse.debug.core.sourcelookup,
- org.eclipse.debug.core.sourcelookup.containers,
  org.eclipse.debug.ui,
  org.eclipse.jdt.core,
- org.eclipse.jdt.internal.debug.ui.launcher,
- org.eclipse.jdt.internal.launching,
  org.eclipse.jdt.launching,
- org.eclipse.jface.dialogs,
- org.eclipse.jface.layout,
- org.eclipse.jface.resource,
- org.eclipse.jface.window,
+ org.eclipse.jface,
  org.eclipse.jst.common.project.facet.core,
- org.eclipse.jst.j2ee.application.internal.operations,
- org.eclipse.jst.j2ee.datamodel.properties,
- org.eclipse.jst.j2ee.internal.archive.operations,
- org.eclipse.jst.j2ee.internal.plugin,
- org.eclipse.jst.j2ee.internal.web.archive.operations,
- org.eclipse.jst.j2ee.project.facet,
+ org.eclipse.jst.j2ee,
+ org.eclipse.jst.j2ee.web,
  org.eclipse.jst.server.core,
- org.eclipse.jst.server.core.internal,
- org.eclipse.jst.server.ui.internal,
  org.eclipse.swt,
- org.eclipse.swt.custom,
- org.eclipse.swt.events,
- org.eclipse.swt.graphics,
- org.eclipse.swt.layout,
- org.eclipse.swt.widgets,
  org.eclipse.ui,
- org.eclipse.ui.browser,
- org.eclipse.ui.forms.widgets,
- org.eclipse.ui.progress,
- org.eclipse.wst.common.componentcore.internal.util,
- org.eclipse.wst.common.frameworks.datamodel,
- org.eclipse.wst.common.frameworks.internal.datamodel,
+ org.eclipse.ui.forms,
+ org.eclipse.wst.common.frameworks,
  org.eclipse.wst.common.project.facet.core,
  org.eclipse.wst.common.project.facet.ui,
  org.eclipse.wst.server.core,
- org.eclipse.wst.server.core.internal,
- org.eclipse.wst.server.core.model,
- org.eclipse.wst.server.core.util,
- org.eclipse.wst.server.ui,
- org.eclipse.wst.server.ui.editor,
- org.eclipse.wst.server.ui.wizard,
- org.osgi.framework,
- org.osgi.util.tracker
+ org.eclipse.wst.server.ui
+Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true

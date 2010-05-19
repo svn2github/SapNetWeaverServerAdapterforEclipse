@@ -43,7 +43,7 @@ import com.sap.netweaver.porta.core.ProxyException;
 import com.sap.netweaver.porta.core.ServerState;
 import com.sap.netweaver.porta.ide.eclipse.SapNWPlugin;
 import com.sap.netweaver.porta.ide.eclipse.server.SapNWServer;
-import com.sap.netweaver.porta.ide.eclipse.util.ProxyUtil;
+import com.sap.netweaver.porta.ide.eclipse.util.ProxyUtilCaller;
 
 public class SapNWServerBehavior extends ServerBehaviourDelegate {
 	
@@ -87,7 +87,7 @@ public class SapNWServerBehavior extends ServerBehaviourDelegate {
 //	@Override - not available in Europa
 	public IStatus canStart(String launchMode) {
 		if (getServer().getServerState() == IServer.STATE_UNKNOWN) {
-			return new Status(Status.INFO, SapNWPlugin.PLUGIN_ID, "Server is in unknown state. Lifecycle actions are not available. ");
+			return new Status(Status.INFO, SapNWPlugin.PLUGIN_ID, IStatus.OK, "Server is in unknown state. Lifecycle actions are not available. ", null);
 		}
 		
 		return Status.OK_STATUS;
@@ -96,11 +96,11 @@ public class SapNWServerBehavior extends ServerBehaviourDelegate {
 //	@Override - not available in Europa
 	public IStatus canStop() {
 		if (getServer().getServerState() == IServer.STATE_UNKNOWN) {
-			return new Status(Status.INFO, SapNWPlugin.PLUGIN_ID, "Server is in unknown state. Lifecycle actions are not available. ");
+			return new Status(Status.INFO, SapNWPlugin.PLUGIN_ID, IStatus.OK, "Server is in unknown state. Lifecycle actions are not available. ", null);
 		}
 		
 		if (getServer().getServerState() == IServer.STATE_STARTING) {
-			return new Status(Status.INFO, SapNWPlugin.PLUGIN_ID, "Cannot stop the starting server. Wait the start to complete first. ");
+			return new Status(Status.INFO, SapNWPlugin.PLUGIN_ID, IStatus.OK, "Cannot stop the starting server. Wait the start to complete first. ", null);
 		}
 		
 		return Status.OK_STATUS;
@@ -109,7 +109,7 @@ public class SapNWServerBehavior extends ServerBehaviourDelegate {
 //	@Override - not available in Europa
 	public IStatus canRestart(String mode) {
 		if (getServer().getServerState() == IServer.STATE_UNKNOWN) {
-			return new Status(Status.INFO, SapNWPlugin.PLUGIN_ID, "Server is in unknown state. Lifecycle actions are not available. ");
+			return new Status(Status.INFO, SapNWPlugin.PLUGIN_ID, IStatus.OK, "Server is in unknown state. Lifecycle actions are not available. ", null);
 		}
 		
 		return Status.OK_STATUS;
@@ -118,7 +118,7 @@ public class SapNWServerBehavior extends ServerBehaviourDelegate {
 //	@Override - not available in Europa
 	public IStatus canPublish() {
 		if (getServer().getServerState() == IServer.STATE_UNKNOWN) {
-			return new Status(Status.INFO, SapNWPlugin.PLUGIN_ID, "Server is in unknown state. Publish actions are not available. ");
+			return new Status(Status.INFO, SapNWPlugin.PLUGIN_ID, IStatus.OK, "Server is in unknown state. Publish actions are not available. ", null);
 		}
 		
 		return Status.OK_STATUS;
@@ -139,7 +139,7 @@ public class SapNWServerBehavior extends ServerBehaviourDelegate {
 		} catch (NotAuthorizedException e) {
 			// should not be possible to happen
 		} catch (ProxyException e) {
-			ProxyUtil.handleProxyException(e);
+			ProxyUtilCaller.handleProxyException(e);
 		} catch (com.sap.netweaver.porta.core.CoreException e) {
 			SapNWPlugin.logError("Cannot get server state. ", e);
 		}
@@ -192,7 +192,7 @@ public class SapNWServerBehavior extends ServerBehaviourDelegate {
 			setMode(launchMode);
 		} catch (NotAuthorizedException e) {
 			throw new CoreException(
-					new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, "You do not have sufficient rights to manage server's lifecycle.", e));
+					new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, IStatus.OK, "You do not have sufficient rights to manage server's lifecycle.", e));
 		} catch (com.sap.netweaver.porta.core.CoreException e) {
 			SapNWPlugin.errorDialog("Starting server failed", "Cannot start the server. ", e);
 		}

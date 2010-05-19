@@ -17,6 +17,7 @@ import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.jst.server.core.IWebModule;
 import org.eclipse.wst.server.core.IModuleArtifact;
 import org.eclipse.wst.server.core.IServer;
+import org.eclipse.wst.server.core.internal.Server;
 import org.eclipse.wst.server.core.model.IURLProvider;
 import org.eclipse.wst.server.core.model.LaunchableAdapterDelegate;
 import org.eclipse.wst.server.core.util.HttpLaunchable;
@@ -56,7 +57,7 @@ public class SapNWLaunchableAdapterDelegate extends LaunchableAdapterDelegate {
 		if (launchable != null && 
 				server.getServerState() == IServer.STATE_STARTED &&
 				server.getMode() == ILaunchManager.DEBUG_MODE &&
-				!server.shouldPublish()) {
+				!((Server) server).shouldPublish()) {
 			SapNWServerBehavior serverControl = (SapNWServerBehavior) server.loadAdapter(SapNWServerBehavior.class, null);
 			serverControl.launchRemoteDebugging();
 		}

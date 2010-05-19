@@ -13,7 +13,6 @@ package com.sap.netweaver.porta.core.nw7;
 import static com.sap.netweaver.porta.core.nw7.FaultReasons.*;
 
 import java.net.InetAddress;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.rmi.RemoteException;
@@ -54,25 +53,6 @@ public class LifecycleManagerImpl extends CoreModuleImpl implements LifecycleMan
 		}
 
 		public boolean handleFault(AxisFault fault) throws CoreException {
-			if (FAULT_NOT_FOUND.getFaultReason().equals(fault.getFaultReason())) {
-				String endpoint = (String) ((Stub) control)._getProperty(Stub.ENDPOINT_ADDRESS_PROPERTY);
-				try {
-					String host = new URL(endpoint).getHost();
-					try {
-						// check if the host can be resolved
-						InetAddress.getByName(host);
-						// the host can be resolved. 
-						// there is a problem with the proxy settings - the host should be added to the nonProxyHosts list
-						throw new ProxyException(host);
-					} catch (UnknownHostException e) {
-						// the host cannot be resolved - there is no problem with proxy settings
-						throw new CoreException("There is a network problem in server's landscape. Java instance was found on host " + e.getMessage() + ", but it cannot be resolved. Try configuring the server direcly to the Java instance. ", e);
-					}
-				} catch (MalformedURLException e) {
-					throw new CoreException("Wrong service endpoint address retrieved: " + endpoint, e);
-				}
-			}
-			
 			throw new CoreException(fault);
 		}
 		
@@ -97,7 +77,24 @@ public class LifecycleManagerImpl extends CoreModuleImpl implements LifecycleMan
 			// establish ws proxy to the SAPControl of the first J2EE instance
 			URL url = utils.getSAPControlWSUrlByInstance(host, instNr);
 			SAPControlPortType initial = utils.getSAPControlWSProxy(url);
-			control = utils.getSAPControlWSProxyToFirstJ2EEInstance(initial);
+			try {
+				control = utils.getSAPControlWSProxyToFirstJ2EEInstance(initial);
+			} catch (AxisFault fault) {
+				// check for problems with the proxy settings
+				String host = url.getHost();
+				try {
+					// check if the host can be resolved
+					InetAddress.getByName(host);
+					// the host can be resolved. 
+					// there is a problem with the proxy settings - the host should be added to the nonProxyHosts list
+					throw new ProxyException(host);
+				} catch (UnknownHostException e) {
+					// the host cannot be resolved - there is no problem with proxy settings
+					throw new CoreException("There is a network problem in server's landscape. Java instance was found on host " + e.getMessage() + ", but it cannot be resolved. Try configuring the server direcly to the Java instance. ", e);
+				}
+			}
+		} catch (CoreException e) {
+			throw e;
 		} catch (Exception e) {
 			throw new CoreException(e);
 		}

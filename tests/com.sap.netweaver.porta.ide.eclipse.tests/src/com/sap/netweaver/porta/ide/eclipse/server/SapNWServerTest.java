@@ -16,7 +16,6 @@ import static org.junit.Assert.*;
 import java.net.URL;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.jst.j2ee.project.facet.IJ2EEFacetConstants;
 import org.eclipse.jst.server.core.IEnterpriseApplication;
 import org.eclipse.jst.server.core.IWebModule;
 import org.eclipse.wst.server.core.IModule;
@@ -25,6 +24,8 @@ import org.eclipse.wst.server.core.util.IStaticWeb;
 import org.junit.Test;
 
 import com.sap.netweaver.porta.core.Server;
+import com.sap.netweaver.porta.ide.eclipse.tests.junitcompatibility.AssertArrays;
+import com.sap.netweaver.porta.ide.eclipse.util.FacetUtil;
 
 public class SapNWServerTest {
 	
@@ -38,7 +39,7 @@ public class SapNWServerTest {
 	@Test
 	public void testGetModuleRootURL_DynamicWeb() throws Exception {
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.DYNAMIC_WEB);
+		expect(moduleType.getId()).andReturn(FacetUtil.DYNAMIC_WEB);
 		IWebModule web = createStrictMock(IWebModule.class);
 		expect(web.getContextRoot()).andReturn("my-app");
 		IModule module = createStrictMock(IModule.class);
@@ -55,7 +56,7 @@ public class SapNWServerTest {
 	@Test
 	public void testGetModuleRootURL_StaticWeb() throws Exception {
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.STATIC_WEB);
+		expect(moduleType.getId()).andReturn(FacetUtil.STATIC_WEB);
 		IStaticWeb web = createStrictMock(IStaticWeb.class);
 		expect(web.getContextRoot()).andReturn("my-app");
 		IModule module = createStrictMock(IModule.class);
@@ -72,7 +73,7 @@ public class SapNWServerTest {
 	@Test
 	public void testGetModuleRootURL_Exception() throws Exception {
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.DYNAMIC_WEB);
+		expect(moduleType.getId()).andReturn(FacetUtil.DYNAMIC_WEB);
 		IWebModule web = createStrictMock(IWebModule.class);
 		expect(web.getContextRoot()).andThrow(new NullPointerException());
 		IModule module = createStrictMock(IModule.class);
@@ -92,7 +93,7 @@ public class SapNWServerTest {
 		IModule module2 = createMock(IModule.class);
 		IModule[] modules = new IModule[] { module1, module2 };
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.ENTERPRISE_APPLICATION).anyTimes();
+		expect(moduleType.getId()).andReturn(FacetUtil.ENTERPRISE_APPLICATION).anyTimes();
 		IEnterpriseApplication ear = createStrictMock(IEnterpriseApplication.class);
 		expect(ear.getModules()).andReturn(modules);
 		IModule module = createStrictMock(IModule.class);
@@ -103,7 +104,7 @@ public class SapNWServerTest {
 		
 		SapNWServer server = new SapNWServer();
 		IModule[] result = server.getChildModules(new IModule[] { module });
-		assertArrayEquals(modules, result);
+		AssertArrays.assertArrayEquals(modules, result);
 	}
 	
 	@Test
@@ -112,7 +113,7 @@ public class SapNWServerTest {
 		IModule module2 = createMock(IModule.class);
 		IModule[] modules = new IModule[] { module1, module2 };
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.DYNAMIC_WEB).anyTimes();
+		expect(moduleType.getId()).andReturn(FacetUtil.DYNAMIC_WEB).anyTimes();
 		IWebModule war = createStrictMock(IWebModule.class);
 		expect(war.getModules()).andReturn(modules);
 		IModule module = createStrictMock(IModule.class);
@@ -123,13 +124,13 @@ public class SapNWServerTest {
 		
 		SapNWServer server = new SapNWServer();
 		IModule[] result = server.getChildModules(new IModule[] { module });
-		assertArrayEquals(modules, result);
+		AssertArrays.assertArrayEquals(modules, result);
 	}
 	
 	@Test
 	public void testGetChildModules_EJB() throws Exception {
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.EJB).anyTimes();
+		expect(moduleType.getId()).andReturn(FacetUtil.EJB).anyTimes();
 		IModule module = createStrictMock(IModule.class);
 		expect(module.getModuleType()).andReturn(moduleType);
 		
@@ -150,7 +151,7 @@ public class SapNWServerTest {
 	@Test
 	public void testGetRootModules_TwoEARs_NoContaining() throws Exception {
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.EJB).anyTimes();
+		expect(moduleType.getId()).andReturn(FacetUtil.EJB).anyTimes();
 		IModule module = createStrictMock(IModule.class);
 		expect(module.getModuleType()).andReturn(moduleType).anyTimes();
 		IModule childModule1 = createStrictMock(IModule.class);
@@ -174,7 +175,7 @@ public class SapNWServerTest {
 	@Test
 	public void testGetRootModules_TwoEARs_FirstContaining() throws Exception {
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.EJB).anyTimes();
+		expect(moduleType.getId()).andReturn(FacetUtil.EJB).anyTimes();
 		IModule module = createStrictMock(IModule.class);
 		expect(module.getModuleType()).andReturn(moduleType).anyTimes();
 		IModule childModule1 = createStrictMock(IModule.class);
@@ -192,13 +193,13 @@ public class SapNWServerTest {
 		
 		SapNWServer server = new SapNWServer();
 		IModule[] result = server.getRootModules(module, new IModule[] { earModule1, earModule2 });
-		assertArrayEquals(new IModule[] { earModule1 }, result);
+		AssertArrays.assertArrayEquals(new IModule[] { earModule1 }, result);
 	}
 	
 	@Test
 	public void testGetRootModules_TwoEARs_BothContaining() throws Exception {
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.EJB).anyTimes();
+		expect(moduleType.getId()).andReturn(FacetUtil.EJB).anyTimes();
 		IModule module = createStrictMock(IModule.class);
 		expect(module.getModuleType()).andReturn(moduleType).anyTimes();
 		IModule childModule1 = createStrictMock(IModule.class);
@@ -216,7 +217,7 @@ public class SapNWServerTest {
 		
 		SapNWServer server = new SapNWServer();
 		IModule[] result = server.getRootModules(module, new IModule[] { earModule1, earModule2 });
-		assertArrayEquals(new IModule[] { earModule1, earModule2 }, result);
+		AssertArrays.assertArrayEquals(new IModule[] { earModule1, earModule2 }, result);
 	}
 	
 	@Test
@@ -236,7 +237,7 @@ public class SapNWServerTest {
 	@Test
 	public void testCanModifyModules_addEAR_RemoveEAR() throws Exception {
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.ENTERPRISE_APPLICATION).anyTimes();
+		expect(moduleType.getId()).andReturn(FacetUtil.ENTERPRISE_APPLICATION).anyTimes();
 		IModule ear = createStrictMock(IModule.class);
 		expect(ear.getModuleType()).andReturn(moduleType).anyTimes();
 		
@@ -250,7 +251,7 @@ public class SapNWServerTest {
 	@Test
 	public void testCanModifyModules_addWAR_RemoveWAR() throws Exception {
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.DYNAMIC_WEB).anyTimes();
+		expect(moduleType.getId()).andReturn(FacetUtil.DYNAMIC_WEB).anyTimes();
 		IModule war = createStrictMock(IModule.class);
 		expect(war.getModuleType()).andReturn(moduleType).anyTimes();
 		
@@ -264,11 +265,11 @@ public class SapNWServerTest {
 	@Test
 	public void testCanModifyModules_addEAR_RemoveWAR() throws Exception {
 		IModuleType moduleTypeEAR = createStrictMock(IModuleType.class);
-		expect(moduleTypeEAR.getId()).andReturn(IJ2EEFacetConstants.ENTERPRISE_APPLICATION).anyTimes();
+		expect(moduleTypeEAR.getId()).andReturn(FacetUtil.ENTERPRISE_APPLICATION).anyTimes();
 		IModule ear = createStrictMock(IModule.class);
 		expect(ear.getModuleType()).andReturn(moduleTypeEAR).anyTimes();
 		IModuleType moduleTypeWAR = createStrictMock(IModuleType.class);
-		expect(moduleTypeWAR.getId()).andReturn(IJ2EEFacetConstants.DYNAMIC_WEB).anyTimes();
+		expect(moduleTypeWAR.getId()).andReturn(FacetUtil.DYNAMIC_WEB).anyTimes();
 		IModule war = createStrictMock(IModule.class);
 		expect(war.getModuleType()).andReturn(moduleTypeWAR).anyTimes();
 		
@@ -282,11 +283,11 @@ public class SapNWServerTest {
 	@Test
 	public void testCanModifyModules_addWAR_RemoveEAR() throws Exception {
 		IModuleType moduleTypeEAR = createStrictMock(IModuleType.class);
-		expect(moduleTypeEAR.getId()).andReturn(IJ2EEFacetConstants.ENTERPRISE_APPLICATION).anyTimes();
+		expect(moduleTypeEAR.getId()).andReturn(FacetUtil.ENTERPRISE_APPLICATION).anyTimes();
 		IModule ear = createStrictMock(IModule.class);
 		expect(ear.getModuleType()).andReturn(moduleTypeEAR).anyTimes();
 		IModuleType moduleTypeWAR = createStrictMock(IModuleType.class);
-		expect(moduleTypeWAR.getId()).andReturn(IJ2EEFacetConstants.DYNAMIC_WEB).anyTimes();
+		expect(moduleTypeWAR.getId()).andReturn(FacetUtil.DYNAMIC_WEB).anyTimes();
 		IModule war = createStrictMock(IModule.class);
 		expect(war.getModuleType()).andReturn(moduleTypeWAR).anyTimes();
 		
@@ -300,11 +301,11 @@ public class SapNWServerTest {
 	@Test
 	public void testCanModifyModules_addEARWAR_RemoveEmpty() throws Exception {
 		IModuleType moduleTypeEAR = createStrictMock(IModuleType.class);
-		expect(moduleTypeEAR.getId()).andReturn(IJ2EEFacetConstants.ENTERPRISE_APPLICATION).anyTimes();
+		expect(moduleTypeEAR.getId()).andReturn(FacetUtil.ENTERPRISE_APPLICATION).anyTimes();
 		IModule ear = createStrictMock(IModule.class);
 		expect(ear.getModuleType()).andReturn(moduleTypeEAR).anyTimes();
 		IModuleType moduleTypeWAR = createStrictMock(IModuleType.class);
-		expect(moduleTypeWAR.getId()).andReturn(IJ2EEFacetConstants.DYNAMIC_WEB).anyTimes();
+		expect(moduleTypeWAR.getId()).andReturn(FacetUtil.DYNAMIC_WEB).anyTimes();
 		IModule war = createStrictMock(IModule.class);
 		expect(war.getModuleType()).andReturn(moduleTypeWAR).anyTimes();
 		
@@ -318,7 +319,7 @@ public class SapNWServerTest {
 	@Test
 	public void testCanModifyModules_addEJB_RemoveEJB() throws Exception {
 		IModuleType moduleType = createStrictMock(IModuleType.class);
-		expect(moduleType.getId()).andReturn(IJ2EEFacetConstants.EJB).anyTimes();
+		expect(moduleType.getId()).andReturn(FacetUtil.EJB).anyTimes();
 		IModule ejb = createStrictMock(IModule.class);
 		expect(ejb.getModuleType()).andReturn(moduleType).anyTimes();
 		
@@ -332,11 +333,11 @@ public class SapNWServerTest {
 	@Test
 	public void testCanModifyModules_addEAR_RemoveEJB() throws Exception {
 		IModuleType moduleTypeEAR = createStrictMock(IModuleType.class);
-		expect(moduleTypeEAR.getId()).andReturn(IJ2EEFacetConstants.ENTERPRISE_APPLICATION).anyTimes();
+		expect(moduleTypeEAR.getId()).andReturn(FacetUtil.ENTERPRISE_APPLICATION).anyTimes();
 		IModule ear = createStrictMock(IModule.class);
 		expect(ear.getModuleType()).andReturn(moduleTypeEAR).anyTimes();
 		IModuleType moduleTypeEJB = createStrictMock(IModuleType.class);
-		expect(moduleTypeEJB.getId()).andReturn(IJ2EEFacetConstants.EJB).anyTimes();
+		expect(moduleTypeEJB.getId()).andReturn(FacetUtil.EJB).anyTimes();
 		IModule ejb = createStrictMock(IModule.class);
 		expect(ejb.getModuleType()).andReturn(moduleTypeEJB).anyTimes();
 		
@@ -350,11 +351,11 @@ public class SapNWServerTest {
 	@Test
 	public void testCanModifyModules_addEJB_RemoveEAR() throws Exception {
 		IModuleType moduleTypeEAR = createStrictMock(IModuleType.class);
-		expect(moduleTypeEAR.getId()).andReturn(IJ2EEFacetConstants.ENTERPRISE_APPLICATION).anyTimes();
+		expect(moduleTypeEAR.getId()).andReturn(FacetUtil.ENTERPRISE_APPLICATION).anyTimes();
 		IModule ear = createStrictMock(IModule.class);
 		expect(ear.getModuleType()).andReturn(moduleTypeEAR).anyTimes();
 		IModuleType moduleTypeEJB = createStrictMock(IModuleType.class);
-		expect(moduleTypeEJB.getId()).andReturn(IJ2EEFacetConstants.EJB).anyTimes();
+		expect(moduleTypeEJB.getId()).andReturn(FacetUtil.EJB).anyTimes();
 		IModule ejb = createStrictMock(IModule.class);
 		expect(ejb.getModuleType()).andReturn(moduleTypeEJB).anyTimes();
 		
@@ -368,11 +369,11 @@ public class SapNWServerTest {
 	@Test
 	public void testCanModifyModules_addEAREJB_RemoveEmpty() throws Exception {
 		IModuleType moduleTypeEAR = createStrictMock(IModuleType.class);
-		expect(moduleTypeEAR.getId()).andReturn(IJ2EEFacetConstants.ENTERPRISE_APPLICATION).anyTimes();
+		expect(moduleTypeEAR.getId()).andReturn(FacetUtil.ENTERPRISE_APPLICATION).anyTimes();
 		IModule ear = createStrictMock(IModule.class);
 		expect(ear.getModuleType()).andReturn(moduleTypeEAR).anyTimes();
 		IModuleType moduleTypeEJB = createStrictMock(IModuleType.class);
-		expect(moduleTypeEJB.getId()).andReturn(IJ2EEFacetConstants.EJB).anyTimes();
+		expect(moduleTypeEJB.getId()).andReturn(FacetUtil.EJB).anyTimes();
 		IModule ejb = createStrictMock(IModule.class);
 		expect(ejb.getModuleType()).andReturn(moduleTypeEJB).anyTimes();
 		

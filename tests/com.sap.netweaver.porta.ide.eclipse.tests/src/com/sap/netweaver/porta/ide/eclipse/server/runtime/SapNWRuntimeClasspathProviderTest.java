@@ -10,13 +10,13 @@
  *******************************************************************************/
 package com.sap.netweaver.porta.ide.eclipse.server.runtime;
 
+import static com.sap.netweaver.porta.ide.eclipse.util.FacetUtil.*;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IClasspathEntry;
-import org.eclipse.jst.j2ee.project.facet.IJ2EEFacetConstants;
 import org.eclipse.wst.common.project.facet.core.IFacetedProject;
 import org.eclipse.wst.common.project.facet.core.IProjectFacetVersion;
 import org.eclipse.wst.server.core.IRuntime;
@@ -60,7 +60,7 @@ public class SapNWRuntimeClasspathProviderTest {
 	public void testResolveClasspathContainer_Web25_Cache() throws Exception {
 		SapNWRuntime sapRuntime = new SapNWRuntime710Mock(true);
 		IFacetedProject project = createMock(IFacetedProject.class);
-		expect(project.hasProjectFacet(IJ2EEFacetConstants.DYNAMIC_WEB_25)).andReturn(true);
+		expect(project.hasProjectFacet(getProjectFacet(DYNAMIC_WEB, "2.5"))).andReturn(true);
 		
 		IRuntime runtime = createMock(IRuntime.class);
 		expect(runtime.getLocation()).andReturn(new Path("/resource/J710"));
@@ -77,7 +77,7 @@ public class SapNWRuntimeClasspathProviderTest {
 	public void testResolveClasspathContainer_EJB21_NoCache() throws Exception {
 		SapNWRuntime sapRuntime = new SapNWRuntime710Mock(false);
 		IFacetedProject project = createMock(IFacetedProject.class);
-		expect(project.hasProjectFacet(IJ2EEFacetConstants.EJB_21)).andReturn(true);
+		expect(project.hasProjectFacet(getProjectFacet(EJB, "2.1"))).andReturn(true);
 		expect(project.hasProjectFacet((IProjectFacetVersion) anyObject())).andReturn(false).anyTimes();
 		
 		IRuntime runtime = createMock(IRuntime.class);

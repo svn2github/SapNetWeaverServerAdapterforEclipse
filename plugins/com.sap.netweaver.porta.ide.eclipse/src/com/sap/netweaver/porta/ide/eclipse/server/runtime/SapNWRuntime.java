@@ -79,7 +79,7 @@ public abstract class SapNWRuntime extends RuntimeDelegate {
 		for (String jarPath : jarPaths) {
 			File jar = new File(javaInstanceDir, jarPath);
 			if (!jar.exists()) {
-				return new Status(Status.ERROR, SapNWPlugin.PLUGIN_ID, "File does not exist: " + jar.getAbsolutePath());
+				return new Status(Status.ERROR, SapNWPlugin.PLUGIN_ID, IStatus.OK, "File does not exist: " + jar.getAbsolutePath(), null);
 			}
 		}
 		return Status.OK_STATUS;
