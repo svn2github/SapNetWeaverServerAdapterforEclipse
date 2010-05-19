@@ -30,10 +30,10 @@
    <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.7.0.201005031829.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.7.0.201005031829">
       <category name="org.eclipse.wst.server.core.serverAdapter"/>
    </feature>
-   <feature url="features/com.sap.netweaver.porta.ide.eclipse.compatibility.feature_0.1.0.201005181302.jar" id="com.sap.netweaver.porta.ide.eclipse.compatibility.feature" version="0.1.0.201005181302">
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.compatibility.feature_0.1.0.201005191610.jar" id="com.sap.netweaver.porta.ide.eclipse.compatibility.feature" version="0.1.0.201005191610">
       <category name="com.sap.netweaver.porta.ide.eclipse.compatibility"/>
    </feature>
-   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.7.1.201005181302.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.7.1.201005181302">
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.7.1.201005191610.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.7.1.201005191610">
       <category name="org.eclipse.wst.server.core.serverAdapter"/>
    </feature>
    <archive path="plugins/org.apache.commons.httpclient_3.0.1.v200706111724.jar" url="http://archive.eclipse.org/tools/orbit/downloads/drops/R200709171314/bundles/org.apache.commons.httpclient_3.0.1.v200706111724.jar"/>
