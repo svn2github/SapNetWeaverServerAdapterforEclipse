@@ -40,5 +40,5 @@
    <archive path="plugins/org.apache.commons.codec_1.2.0.v200706111724.jar" url="http://archive.eclipse.org/tools/orbit/downloads/drops/R200709171314/bundles/org.apache.commons.codec_1.2.0.v200706111724.jar"/>
    <archive path="plugins/org.apache.commons.logging_1.0.4.v200706111724.jar" url="http://archive.eclipse.org/tools/orbit/downloads/drops/R200709171314/bundles/org.apache.commons.logging_1.0.4.v200706111724.jar"/>
    <category-def name="org.eclipse.wst.server.core.serverAdapter" label="SAP NetWeaver Server Adapter"/>
-   <category-def name="com.sap.netweaver.porta.ide.eclipse.compatibility" label="SAP NetWeaver Server Adapter Compatibility Libraries"/>
+   <category-def name="com.sap.netweaver.porta.ide.eclipse.compatibility" label="Compatibility with Eclipse 3.3 and below"/>
 </site>
