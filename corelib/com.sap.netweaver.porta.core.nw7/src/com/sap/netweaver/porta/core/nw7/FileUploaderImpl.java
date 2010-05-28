@@ -31,6 +31,7 @@ import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
 import org.apache.commons.httpclient.methods.multipart.Part;
 
 import com.sap.netweaver.porta.core.CoreException;
+import com.sap.netweaver.porta.core.NoWSGateException;
 import com.sap.netweaver.porta.core.NotAuthorizedException;
 
 public class FileUploaderImpl implements FileUploader {
@@ -74,6 +75,8 @@ public class FileUploaderImpl implements FileUploader {
 				throw new NotAuthorizedException(FAULT_INVALID_CREDENTIALS.getFaultReason());
 			} else if (statusCode == HttpStatus.SC_FORBIDDEN) {
 				throw new NotAuthorizedException(FAULT_PERMISSION_DENIED.getFaultReason());
+			} else if (statusCode == HttpStatus.SC_NOT_FOUND) {
+				throw new NoWSGateException(null, url);
 			} else if (statusCode != HttpStatus.SC_OK) {
 				throw new CoreException(method.getStatusText());
 			}
