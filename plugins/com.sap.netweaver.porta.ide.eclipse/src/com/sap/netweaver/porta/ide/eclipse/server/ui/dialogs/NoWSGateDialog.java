@@ -71,7 +71,7 @@ public class NoWSGateDialog extends MessageDialog {
 			IWorkbenchBrowserSupport browserSupport = PlatformUI.getWorkbench().getBrowserSupport();
 			try {
 				browserSupport.createBrowser(IWorkbenchBrowserSupport.LOCATION_BAR | IWorkbenchBrowserSupport.NAVIGATION_BAR, "SDN", null, null).
-						openURL(new URL("http://wiki.sdn.sap.com/wiki/x/VoO1Bw"));
+						openURL(new URL("http://sourceforge.net/apps/trac/sapnweclipse/wiki/InstallDeployWSApp"));
 			} catch (Exception e) {
 				SapNWPlugin.logError("Failed to open the SDN wiki", e);
 			}
