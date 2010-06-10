@@ -30,32 +30,42 @@ public class SapNWPublishTask extends PublishTaskDelegate {
 		
 		SapNWServerBehavior serverControl = (SapNWServerBehavior) server.loadAdapter(SapNWServerBehavior.class, null);
 
-		// find all root modules that needs to be deployed
+		// find all root modules that needs to be deployed or removed
+		Map<String, IModule> rootModulesForRemove = new HashMap<String, IModule>();
 		Map<IModule, Integer> rootModules = new HashMap<IModule, Integer>();
 		int size = modules.size();
 		for (int i = 0; i < size; i++) {
 			IModule[] module = (IModule[]) modules.get(i);
 			Integer deltaKind = (Integer) kindList.get(i);
 			
-			// check if the module is modified and its root module is deployable
-			if (deltaKind != ServerBehaviourDelegate.NO_CHANGE 
-					&& SapNWServerUtil.isDeployableModule(module[0])) {
-				if (module.length == 1) {
-					// if root module then add it to the task list
-					rootModules.put(module[0], deltaKind);
-				} else {
-					// if submodule, then check if its root module is already added to the task list
-					// if not, then add it to the task list. 
-					if (!rootModules.containsKey(module[0])) {
-						rootModules.put(module[0], ServerBehaviourDelegate.CHANGED);
+			// check if the root module is deployable
+			if (SapNWServerUtil.isDeployableModule(module[0])) {
+				if (module.length == 1) { // check if root module
+					if (deltaKind == ServerBehaviourDelegate.REMOVED) {
+						rootModulesForRemove.put(module[0].getId(), module[0]);
+					} else if (deltaKind != ServerBehaviourDelegate.NO_CHANGE) {
+						rootModules.put(module[0], deltaKind);
+					}
+				} else if (deltaKind != ServerBehaviourDelegate.NO_CHANGE) {
+					if (deltaKind == ServerBehaviourDelegate.REMOVED && !module[0].exists()) {
+						if(!rootModulesForRemove.keySet().contains(module[0].getId())) {
+							rootModulesForRemove.put(module[0].getId(), module[0]);
+						}
+					} else {
+						if (!rootModules.containsKey(module[0])) {
+							rootModules.put(module[0], ServerBehaviourDelegate.CHANGED);
+						}
 					}
 				}
 			}
 		}
 		
 		// construct publish operations
-		PublishOperation[] operations = new PublishOperation[rootModules.size()];
+		PublishOperation[] operations = new PublishOperation[rootModulesForRemove.size() + rootModules.size()];
 		int i = 0;
+		for (IModule module : rootModulesForRemove.values()) {
+			operations[i++] = new SapNWPublishOperation(serverControl, kind, new IModule[] { module }, ServerBehaviourDelegate.REMOVED);
+		}
 		for (IModule module : rootModules.keySet()) {
 			int deltaKind = rootModules.get(module);
 			operations[i++] = new SapNWPublishOperation(serverControl, kind, new IModule[] { module }, deltaKind);
