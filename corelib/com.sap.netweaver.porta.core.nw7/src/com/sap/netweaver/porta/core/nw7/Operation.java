@@ -15,8 +15,6 @@ import static com.sap.netweaver.porta.core.nw7.FaultReasons.*;
 
 import java.rmi.RemoteException;
 
-import javax.xml.rpc.Stub;
-
 import org.apache.axis.AxisFault;
 
 import com.sap.netweaver.porta.core.AuthenticationCallback;
@@ -87,7 +85,7 @@ public class Operation {
 		try {
 			credentials = callback.getCredentials(reason);
 		} catch (AuthenticationRefusedException e) {
-			throw new NotAuthorizedException("user has not provided user and password");
+			throw new NotAuthorizedException("User has not provided user and password");
 		}
 		
 		// Set the credentials

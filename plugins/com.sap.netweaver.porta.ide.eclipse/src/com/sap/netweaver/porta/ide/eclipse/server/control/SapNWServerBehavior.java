@@ -51,6 +51,18 @@ public class SapNWServerBehavior extends ServerBehaviourDelegate {
 	private IDisconnect debugLaunch;
 
 	@Override
+	protected void initialize(IProgressMonitor monitor) {
+		super.initialize(monitor);
+		
+		// force refresh of the server state
+		try {
+			refreshServerState();
+		} catch (Exception e) {
+			SapNWPlugin.logError("Error on refreshing server state", e); 
+		}
+	}
+
+	@Override
 	public void stop(boolean force) {
 		try {
 			disconnectDebugSession();
@@ -187,9 +199,13 @@ public class SapNWServerBehavior extends ServerBehaviourDelegate {
 
 	protected void setupLaunch(ILaunch launch, String launchMode, IProgressMonitor monitor) throws CoreException {
 		try {
-			getLM().start();
-			setServerState(IServer.STATE_STARTING);
-			setMode(launchMode);
+			// check if the server is already started
+			if (getServerState() == IServer.STATE_UNKNOWN || getServerState() == IServer.STATE_STOPPED) {
+				// trigger start
+				getLM().start();
+				setServerState(IServer.STATE_STARTING);
+				setMode(launchMode);
+			}
 		} catch (NotAuthorizedException e) {
 			throw new CoreException(
 					new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, IStatus.OK, "You do not have sufficient rights to manage server's lifecycle.", e));

@@ -218,7 +218,7 @@ public class SapNWServer extends ServerDelegate implements IURLProvider {
 		try {
 			return getServerCore().getHttpAccessPoint().getPort();
 		} catch (Exception e) {
-			SapNWPlugin.logWarning("Could not get server http port.", e);
+			SapNWPlugin.logWarning(String.format("Could not get http port for server [%s:%d]. ", getServer().getHost(), getInstanceNumber()), e);
 		}
 		try {
 			return 50000 + getInstanceNumber() * 100;
@@ -231,7 +231,7 @@ public class SapNWServer extends ServerDelegate implements IURLProvider {
 		try {
 			return serverCore.getSystemName().toLowerCase() + "adm";
 		} catch (com.sap.netweaver.porta.core.CoreException e) {
-			SapNWPlugin.logWarning("Cannot retrieve system name. Will not suggest default user name. ", e);
+			SapNWPlugin.logWarning(String.format("Cannot retrieve system name for server [%s:%d]. Will not suggest default user name. ", getServer().getHost(), getInstanceNumber()), e);
 			return "";
 		}
 	}

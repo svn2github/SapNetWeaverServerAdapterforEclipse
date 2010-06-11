@@ -189,24 +189,27 @@ public class SapNWServerComposite extends Composite {
 		}
 		// validate ping status
 		if (!StatusUtil.hasErrorMessage(status)) {
-			status = StatusUtil.merge(status, validatePingStatus(pinged));
+			status = StatusUtil.merge(status, validatePingStatus());
 		}
 		
-		if (status == null || status.isOK())
+		if (status == null || status.isOK()) {
 			wizard.setMessage(null, IMessageProvider.NONE);
-		else if (status.getSeverity() == IStatus.WARNING)
+		} else if (status.getSeverity() == IStatus.INFO) {
+			wizard.setMessage(status.getMessage(), IMessageProvider.INFORMATION);
+		} else if (status.getSeverity() == IStatus.WARNING) {
 			wizard.setMessage(status.getMessage(), IMessageProvider.WARNING);
-		else
+		} else {
 			wizard.setMessage(status.getMessage(), IMessageProvider.ERROR);
+		}
 		
 		pingServer.setEnabled(wizard.getMessageType() != IMessageProvider.ERROR);
 		
 		wizard.update();
 	}
 	
-	IStatus validatePingStatus(boolean value) {
-		if (!value) {
-			return new Status(IStatus.WARNING, SapNWPlugin.PLUGIN_ID, IStatus.OK, "The server has not been pinged successfully yet. Use the Ping Server button. ", null);
+	IStatus validatePingStatus() {
+		if (!pinged) {
+			return new Status(IStatus.INFO, SapNWPlugin.PLUGIN_ID, IStatus.OK, "The server has not been pinged successfully yet. Use the Ping Server button. ", null);
 		}
 		return Status.OK_STATUS;
 	}
@@ -234,6 +237,10 @@ public class SapNWServerComposite extends Composite {
 			return new Status(IStatus.ERROR, SapNWPlugin.PLUGIN_ID, IStatus.OK, message, null);
 		}
 		return Status.OK_STATUS;
+	}
+	
+	boolean isPinged() {
+		return pinged;
 	}
 	
 	private String getDefaultHost() {

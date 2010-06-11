@@ -51,7 +51,7 @@ public class SapNWServerWizardFragment extends WizardFragment {
 		if (server == null)
 			return false;
 		
-		return wizard.getMessageType() != IMessageProvider.ERROR;
+		return comp.isPinged() && wizard.getMessageType() != IMessageProvider.ERROR;
 	}
 	
 	public void enter() {
@@ -65,12 +65,12 @@ public class SapNWServerWizardFragment extends WizardFragment {
 	}
 
 	public void performFinish(IProgressMonitor monitor) throws CoreException {
+		SapNWServer sapServer = (SapNWServer) getServer().loadAdapter(SapNWServer.class, monitor);
 		try {
-			SapNWServer sapServer = (SapNWServer) getServer().loadAdapter(SapNWServer.class, monitor);
 			String systemName = sapServer.getServerCore().getSystemName();
 			getServer().setName(getUniqueServerName(systemName));
 		} catch (com.sap.netweaver.porta.core.CoreException e) {
-			SapNWPlugin.logError("Cannot retrieve system name", e);
+			SapNWPlugin.logError(String.format("Cannot retrieve system name for server [%s:%d]. ", sapServer.getServer().getHost(), sapServer.getInstanceNumber()), e);
 		}
 	}
 	
