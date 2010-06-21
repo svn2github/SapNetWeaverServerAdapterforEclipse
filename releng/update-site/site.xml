@@ -36,7 +36,7 @@
    <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.7.1.201005191610.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.7.1.201005191610">
       <category name="org.eclipse.wst.server.core.serverAdapter"/>
    </feature>
-   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.7.2.201006211434.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.7.2.201006211434">
+   <feature url="features/com.sap.netweaver.porta.ide.eclipse.feature_0.7.2.201006211528.jar" id="com.sap.netweaver.porta.ide.eclipse.feature" version="0.7.2.201006211528">
       <category name="org.eclipse.wst.server.core.serverAdapter"/>
    </feature>
    <archive path="plugins/org.apache.commons.httpclient_3.0.1.v200706111724.jar" url="http://archive.eclipse.org/tools/orbit/downloads/drops/R200709171314/bundles/org.apache.commons.httpclient_3.0.1.v200706111724.jar"/>
