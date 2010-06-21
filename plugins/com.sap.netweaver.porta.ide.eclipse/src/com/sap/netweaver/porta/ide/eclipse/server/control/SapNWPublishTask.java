@@ -53,7 +53,7 @@ public class SapNWPublishTask extends PublishTaskDelegate {
 							rootModulesForRemove.put(module[0].getId(), module[0]);
 						}
 					} else {
-						if (!rootModules.containsKey(module[0])) {
+						if (!rootModules.containsKey(module[0]) && !rootModulesForRemove.containsValue(module[0])) {
 							rootModules.put(module[0], ServerBehaviourDelegate.CHANGED);
 						}
 					}
