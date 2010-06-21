@@ -16,6 +16,7 @@ import java.util.Map;
 
 import org.eclipse.wst.server.core.IModule;
 import org.eclipse.wst.server.core.IServer;
+import org.eclipse.wst.server.core.internal.DeletedModule;
 import org.eclipse.wst.server.core.model.PublishOperation;
 import org.eclipse.wst.server.core.model.PublishTaskDelegate;
 import org.eclipse.wst.server.core.model.ServerBehaviourDelegate;
@@ -47,7 +48,7 @@ public class SapNWPublishTask extends PublishTaskDelegate {
 						rootModules.put(module[0], deltaKind);
 					}
 				} else if (deltaKind != ServerBehaviourDelegate.NO_CHANGE) {
-					if (deltaKind == ServerBehaviourDelegate.REMOVED && !module[0].exists()) {
+					if (deltaKind == ServerBehaviourDelegate.REMOVED && !moduleExists(module[0])) {
 						if(!rootModulesForRemove.keySet().contains(module[0].getId())) {
 							rootModulesForRemove.put(module[0].getId(), module[0]);
 						}
@@ -72,6 +73,14 @@ public class SapNWPublishTask extends PublishTaskDelegate {
 		}
 		
 		return operations;
+	}
+
+	/*
+	 * Use this method instead of IMethod.exists() API for compatibility with
+	 * Callisto, Europa and Ganymede.
+	 */
+	private boolean moduleExists(IModule module) {
+		return !(module instanceof DeletedModule);
 	}
 	
 }
