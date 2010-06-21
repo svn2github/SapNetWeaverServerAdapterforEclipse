@@ -35,27 +35,36 @@ public class SapNWPublishTask extends PublishTaskDelegate {
 		Map<String, IModule> rootModulesForRemove = new HashMap<String, IModule>();
 		Map<IModule, Integer> rootModules = new HashMap<IModule, Integer>();
 		int size = modules.size();
+		
+		// cycle through root modules first
 		for (int i = 0; i < size; i++) {
 			IModule[] module = (IModule[]) modules.get(i);
 			Integer deltaKind = (Integer) kindList.get(i);
 			
-			// check if the root module is deployable
-			if (SapNWServerUtil.isDeployableModule(module[0])) {
-				if (module.length == 1) { // check if root module
-					if (deltaKind == ServerBehaviourDelegate.REMOVED) {
+			// check if deployable root module
+			if (isDeployable(module) && isRoot(module)) {
+				if (isRemoved(deltaKind)) {
+					rootModulesForRemove.put(module[0].getId(), module[0]);
+				} else if (isChanged(deltaKind)) {
+					rootModules.put(module[0], deltaKind);
+				}
+			}
+		}
+		
+		// cycle through submodules
+		for (int i = 0; i < size; i++) {
+			IModule[] module = (IModule[]) modules.get(i);
+			Integer deltaKind = (Integer) kindList.get(i);
+			
+			// check if is deployable submodule
+			if (isDeployable(module) && !isRoot(module) && isChanged(deltaKind)) {
+				if (isRemoved(deltaKind) && !moduleExists(module[0])) {
+					if(!rootModulesForRemove.keySet().contains(module[0].getId())) {
 						rootModulesForRemove.put(module[0].getId(), module[0]);
-					} else if (deltaKind != ServerBehaviourDelegate.NO_CHANGE) {
-						rootModules.put(module[0], deltaKind);
 					}
-				} else if (deltaKind != ServerBehaviourDelegate.NO_CHANGE) {
-					if (deltaKind == ServerBehaviourDelegate.REMOVED && !moduleExists(module[0])) {
-						if(!rootModulesForRemove.keySet().contains(module[0].getId())) {
-							rootModulesForRemove.put(module[0].getId(), module[0]);
-						}
-					} else {
-						if (!rootModules.containsKey(module[0]) && !rootModulesForRemove.containsValue(module[0])) {
-							rootModules.put(module[0], ServerBehaviourDelegate.CHANGED);
-						}
+				} else {
+					if (!rootModules.containsKey(module[0]) && !rootModulesForRemove.containsValue(module[0])) {
+						rootModules.put(module[0], ServerBehaviourDelegate.CHANGED);
 					}
 				}
 			}
@@ -81,6 +90,22 @@ public class SapNWPublishTask extends PublishTaskDelegate {
 	 */
 	private boolean moduleExists(IModule module) {
 		return !(module instanceof DeletedModule);
+	}
+	
+	private boolean isDeployable(IModule[] module) {
+		return SapNWServerUtil.isDeployableModule(module[0]);
+	}
+	
+	private boolean isRoot(IModule[] module) {
+		return module.length == 1;
+	}
+	
+	private boolean isChanged(int deltaKind) {
+		return deltaKind != ServerBehaviourDelegate.NO_CHANGE;
+	}
+	
+	private boolean isRemoved(int deltaKind) {
+		return deltaKind == ServerBehaviourDelegate.REMOVED;
 	}
 	
 }
